@@ -35,7 +35,10 @@ class InputSearchCriteria extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            startDate: moment(),
+            drawDateFrom : '',
+            drawDateTo : '',
+            receivedDateFrom: '',
+            receivedDateTo: '',
             sponsorData: {},
             studyData: {},
             testData : {},
@@ -74,12 +77,33 @@ class InputSearchCriteria extends Component {
         this.getSelectedFreezerBoxData = this.getSelectedFreezerBoxData.bind(this);
         this.handleIncludeItemsCheckbox = this.handleIncludeItemsCheckbox.bind(this);
         this.handleOnlyItemsCheckbox = this.handleOnlyItemsCheckbox.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleDrawDateFrom = this.handleDrawDateFrom.bind(this);
+        this.handleDrawDateTo = this.handleDrawDateTo.bind(this);
+        this.handleReceivedDateFrom = this.handleReceivedDateFrom.bind(this);
+        this.handleReceivedDateTo = this.handleReceivedDateTo.bind(this);
     }
 
-    handleChange(date) {
+    handleDrawDateFrom(date) {
         this.setState({
-            startDate: date
+            drawDateFrom : date
+        });
+    }
+
+    handleDrawDateTo(date) {
+        this.setState({
+            drawDateTo : date
+        });
+    }
+
+    handleReceivedDateFrom(date) {
+        this.setState({
+            receivedDateFrom: date
+        });
+    }
+
+    handleReceivedDateTo(date) {
+        this.setState({
+            receivedDateTo: date
         });
     }
 
@@ -219,9 +243,9 @@ class InputSearchCriteria extends Component {
                             <PreDulTestList getSelectedPreDulTestData={this.getSelectedPreDulTestData} studyId={this.state.studyData.id}/>
 
                             <div className="form-inline">
-                                <label className="col-sm-4 col-form-label" style={styles.label}>volume|uom</label>
+                                <label className="col-sm-4 col-form-label" id="batch-search-label">volume|uom</label>
                                 <div className="col-xl1">
-                                    <input type="text" style={styles.text} className="form-control" aria-label="Small" id="usr"/>
+                                    <input type="text" id="volume-text" className="form-control" aria-label="Small"/>
                                     <LiveSearch
                                         liveSearchData={liveStatusSearchData}
                                         notifyParent={this.notifyParent}/>
@@ -257,62 +281,62 @@ class InputSearchCriteria extends Component {
 
                         <div className='col-md-6'>
 
-                            <div className="row" style={styles.rowTop}>
-                                <div className="col-md-4" style={styles.col}>
+                            <div id="row-top" className="row" >
+                                <div id="Alight-text-start" className="col-md-4" >
                                     <label >Draw Date</label>
                                 </div>
-                                <div className="col-md" style={styles.col}>
+                                <div id="row-top"  className="col-md" >
                                     <div className="date-style">
                                         <label className="col-sm-3 col-form-label">From:</label>
                                         <DatePicker
+                                            dateFormat="MM/DD/YYYY"
+                                            selected={this.state.drawDateFrom}
+                                            onChange={this.handleDrawDateFrom}
                                             placeholderText="mm/dd/yyyy"
-                                            style={styles.Calender}
-                                            // selected={this.state.startDate}
-                                            onChange={this.handleChange}
                                         />
                                     </div>
                                     <div className="date-style">
                                         <label className="col-sm-3 col-form-label">To:
                                         </label>
                                         <DatePicker
+                                            dateFormat="MM/DD/YYYY"
+                                            selected={this.state.drawDateTo}
+                                            onChange={this.handleDrawDateTo}
                                             placeholderText="mm/dd/yyyy"
-                                            style={styles.Calender}
-                                            // selected={this.state.startDate}
-                                            onChange={this.handleChange}
                                         />
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="row" style={styles.rowTop}>
-                                <div className="col-md-4" style={styles.col}>
+                            <div className="row" id="row-top" >
+                                <div id="Alight-text-start" className="col-md-4" >
                                     <label >Recieved Date</label>
                                 </div>
-                                <div className="col-md" style={styles.col}>
+                                <div  id="Alight-text-start" className="col-md" >
                                     <div className="date-style">
                                         <label className="col-sm-3 col-form-label">From:
                                         </label>
                                         <DatePicker
+                                            dateFormat="MM/DD/YYYY"
+                                            selected={this.state.receivedDateFrom}
+                                            onChange={this.handleReceivedDateFrom}
                                             placeholderText="mm/dd/yyyy"
-                                            style={styles.Calender}
-                                            // selected={this.state.startDate}
-                                            onChange={this.handleChange}
                                         />
                                     </div>
                                     <div className="date-style">
                                         <label className="col-sm-3 col-form-label">To:</label>
                                         <DatePicker
+                                            dateFormat="MM/DD/YYYY"
+                                            selected={this.state.receivedDateTo}
+                                            onChange={this.handleReceivedDateTo}
                                             placeholderText="mm/dd/yyyy"
-                                            style={styles.Calender}
-                                            // selected={this.state.startDate}
-                                            onChange={this.handleChange}
                                         />
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="row" style={styles.rowTop}>
-                                <div className="col-md-5" style={styles.col}>
+                            <div className="row" id="row-top" >
+                                <div id="Alight-text-start" className="col-md-5" >
                                     <label >Sequence Number
                                     </label>
                                 </div>
@@ -320,20 +344,20 @@ class InputSearchCriteria extends Component {
                                     <div>
                                         <div className="col-md seq-no" >
                                         <label >From:</label>
-                                        <input type="text" style={styles.sequenceText} className="form-control" aria-label="Small"/>
+                                        <input type="text" id="sequence-text" className="form-control" aria-label="Small"/>
                                         </div>
                                     </div>
                                     <div>
                                         <div className="col-md-2 seq-no" >
                                         <label >To:</label>
-                                        <input type="text" style={styles.sequenceText} className="form-control" aria-label="Small" />
+                                        <input type="text" id="sequence-text" className="form-control" aria-label="Small" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="row" style={styles.rowTop}>
-                                <div className="col-md-5" style={styles.col}>
+                            <div className="row" id="row-top" >
+                                <div id="Alight-text-start" className="col-md-5" >
                                     <label> Barcodes </label>
                                 </div>
                                 <div >
@@ -342,22 +366,22 @@ class InputSearchCriteria extends Component {
                                 </div>
                             </div>
 
-                            <div className="row" style={styles.rowTop}>
-                                <div className="col-md-5" style={styles.col}>
+                            <div className="row" id="row-top" >
+                                <div id="Alight-text-start" className="col-md-5" >
                                     <label>Paste Barcodes</label>
                                 </div>
                                 <textarea className="form-control Paste-text-area"  rows="3"></textarea>
                             </div>
 
-                            <div className="row" style={styles.rowTop}>
-                                <div className="col-md-5" style={styles.col}>
+                            <div className="row" id="row-top" >
+                                <div id="Alight-text-start" className="col-md-5" >
                                     <label>Paste Box Barcodes</label>
                                 </div>
                                 <textarea className="form-control Paste-text-area"  rows="3"></textarea>
                             </div>
 
-                            <div className="row" style={styles.rowTop}>
-                                <div className="col-md-2" style={styles.col}>
+                            <div className="row" id="row-top" >
+                                <div id="Alight-text-start" className="col-md-2" >
                                     <div className="form-check">
                                         <input type="checkbox"  checked={this.state.INCLUDE_ITEMS_WITH_OPEN_EXCEPTIONS} onChange={this.handleIncludeItemsCheckbox}className="form-check-input"></input>
                                     </div>
@@ -365,8 +389,8 @@ class InputSearchCriteria extends Component {
                                 <label className="form-check-label">Include items with open exceptions?</label>
                             </div>
 
-                            <div className="row" style={styles.rowTop}>
-                                <div className="col-md-2" style={styles.col}>
+                            <div className="row" id="row-top" >
+                                <div id="Alight-text-start" className="col-md-2" >
                                     <div className="form-check">
                                         <input type="checkbox" checked={this.state.ONLY_ITEMS_WITH_PREREQUISITES_MET} onChange={this.handleOnlyItemsCheckbox} className="form-check-input"></input>
                                     </div>
@@ -374,8 +398,8 @@ class InputSearchCriteria extends Component {
                                 <label className="form-check-label">Only items with prerequistes met</label>
                             </div>
 
-                            <div className="row" style={styles.rowTop}>
-                                <div className="col-md-2" style={styles.col}>
+                            <div className="row" id="row-top" >
+                                <div id="Alight-text-start" className="col-md-2" >
                                     <div className="form-check">
                                         <input type="checkbox" className="form-check-input" ></input>
                                     </div>
@@ -387,14 +411,14 @@ class InputSearchCriteria extends Component {
                             </div>
 
                             <div className="form-inline" style={styles.rowTop1}>
-                                <label className="col-sm-5 col-form-label" style={styles.label}>My Saved Searches</label>
+                                <label className="col-sm-5 col-form-label" id="batch-search-label">My Saved Searches</label>
                                 <div className="col-sm-5">
                                     <LiveSearch
                                         notifyParent={this.notifyParent}
                                         liveSearchData={liveLocationSearchData}/>
                                 </div>
                             </div>
-                            <div className="row" style={styles.SaveField}>
+                            <div className="row" id="save-search-field">
                                 <div className="col-md-5"></div>
                                     <div className="form-check">
                                         <input type="checkbox" className="form-check-input" id="exampleCheck1"></input>
@@ -403,7 +427,7 @@ class InputSearchCriteria extends Component {
                             </div>
 
 
-                            <div className="row" style={styles.button}>
+                            <div className="row" id="batch-row-buttons">
                                 <div className="col-sm-2">
                                     <button id='reset-button'className="btn btn-primary">Reset</button>
                                 </div>
@@ -426,48 +450,17 @@ class InputSearchCriteria extends Component {
     }
 }
 const styles = ({
-    label: {
-        justifyContent: 'flex-start'
-    },
-    rowTop: {
-        marginTop: '20px'
-    },
     rowTop1: {
         marginTop: '20px',
         marginLeft:'-12px'
     },
-    SaveField:{
-        marginTop:'5px',
-        paddingLeft:'45px'
-    },
-    Calender:{
-        width:'175px'
-    },
     findButton:{
         color:'white'
-    },
-    sequenceText:{
-        width: '55px',
-        height: '30px',
-        marginLeft: '10px'
     },
     sequenceNo :{
         display:'flex',
         marginLeft:'-44px'
-    },
-    text: {
-        width: '48%',
-        height: '31px',
-        marginLeft:'29px'
-    },
-    col: {
-        textAlign: 'start'
-    },
-    button: {
-        justifyContent: 'flex-end',
-        marginTop: '45px'
     }
-
 });
 
 export default InputSearchCriteria;

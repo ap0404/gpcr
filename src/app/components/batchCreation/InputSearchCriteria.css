@@ -18,14 +18,7 @@
     display: inline-flex;
 }
 
-#only-item-span {
-    display: inline-block;
-    padding: 0 7px;
-}
 
-#only-item-input {
-    width: 30px;
-}
 .myHalfCol .col-lg-6{padding:0 10px;}
 
 .textBox {
@@ -58,4 +51,43 @@
 
 .Parent-barcode-batch-creation{
     width: 84%;
+}
+
+#only-item-span {
+    display: inline-block;
+    padding: 0 7px;
+}
+
+#only-item-input {
+    width: 30px;
+}
+
+#Alight-text-start{
+    text-align: start;
+}
+#row-top{
+    margin-top: 20px;
+}
+#save-search-field {
+    margin-top:5px;
+    padding-left:45px;
+}
+#sequence-text{
+    width: 55px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+#volume-text
+{
+    width: 48%;
+    height: 31px;
+    margin-left:29px;
+}
+#batch-row-buttons{
+    justify-content: flex-end;
+    margin-top: 45px;
+}
+#batch-search-label{
+    justify-content: flex-start;
 }

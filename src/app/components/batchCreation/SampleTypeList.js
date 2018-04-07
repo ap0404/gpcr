@@ -21,7 +21,7 @@ class SampleTypeList extends Component {
         SampleTypeData.name=selectedField[0];
         this.props.getSelectedSampleTypeData(SampleTypeData);
     };
-    componentWillReceiveProps(newProps) {
+    componentDidMount() {
         //  if(!!newProps.testId) {
         axios.get('http://localhost:8081/gclportal/api/getAllSampleTypes')
             .then((res)=> {
