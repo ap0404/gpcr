@@ -7,6 +7,7 @@ import SearchWorkOrder from "./components/searchWorkOrder/SearchWorkOrder";
 import InputSearchCriteria from "./components/batchCreation/InputSearchCriteria";
 import UpdateWorkOrder from "./components/updateWorkOrder/UpdateWorkOrder";
 import BatchSearchResults from "./components/batchCreation/batchSearchResults/BatchSearchResults";
+import { connect } from 'react-redux';
 class App extends Component {
   render() {
     return (
@@ -24,4 +25,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect() (App);

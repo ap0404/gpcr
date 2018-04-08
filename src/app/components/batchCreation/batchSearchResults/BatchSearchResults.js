@@ -1,10 +1,30 @@
 import React, {Component} from 'react';
 import './BatchSearchResults.css';
+import { connect } from 'react-redux';
+import { getBatchResult,getResultSucess,fetchPostsIfNeeded} from "../../../action/batch.action";
+import  {getBatchResultReducer}  from "../../../reducers";
+import PropTypes from 'prop-types';
 
 class BatchSearchResults extends Component {
-    // constructor(props) {     super(props); }
+    constructor(props) {
+        super(props);
+        this.props.location && this.props.location.query ? localStorage.setItem('req',this.props.location.query.request) : '';
+        const {result} = this.props;
+        this.state = {
+            req : JSON.parse(localStorage.getItem('req')),
+            result : result
+        }
+    }
+
+    componentWillMount(){
+        const { dispatch } = this.props
+        dispatch(fetchPostsIfNeeded(this.state.req));
+    }
+
 
     render() {
+        const { result } = this.props;
+        debugger
         return (
             <div>
                 <div className="jumbotron main-container">
@@ -76,4 +96,10 @@ class BatchSearchResults extends Component {
     }
 }
 
-export default BatchSearchResults;
+function mapStateToProps(state){
+    return {
+        result : state
+    }
+}
+
+export default connect(mapStateToProps) (BatchSearchResults);

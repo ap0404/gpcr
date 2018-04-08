@@ -23,11 +23,13 @@ import RandIDList from "./RandIDList";
 import PatientAccessionList from "./PatientAccessionList";
 import PreDulTestList from "./PreDulTestList";
 import {Link} from "react-router-dom";
+import { connect } from 'react-redux';
 
 //import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const liveLocationSearchData = ["Mustard", "Ketchup", "Relish"];
 const liveStatusSearchData = ["ml", "ul", "g", "mg", "ug","ng"];
+
 
 
 
@@ -225,7 +227,7 @@ class InputSearchCriteria extends Component {
     // onChange = date => this.setState({date})
 
     render() {
-
+        const request = this.state;
         return (
             <div>
 
@@ -433,7 +435,7 @@ class InputSearchCriteria extends Component {
                                 </div>
                                 <div className="col-sm-2">
                                     <button  className="btn btn-success">
-                                        <Link style={styles.findButton} to='/batchSearchResults' state={this.state.vialId}>Find</Link>
+                                        <Link style={styles.findButton} to={{ pathname: '/batchSearchResults', query:{request : JSON.stringify(request)}  }} state={this.state.vialId}>Find</Link>
                                     </button>
                                 </div>
                                 <div className="col-sm-2">
@@ -463,4 +465,4 @@ const styles = ({
     }
 });
 
-export default InputSearchCriteria;
+export default connect() (InputSearchCriteria);
