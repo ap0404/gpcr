@@ -23,6 +23,7 @@ import RandIDList from "./RandIDList";
 import PatientAccessionList from "./PatientAccessionList";
 import PreDulTestList from "./PreDulTestList";
 import {Link} from "react-router-dom";
+import MySavedSearches from "./MySavedSearches";
 
 //import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -55,6 +56,9 @@ class InputSearchCriteria extends Component {
             screenData:{},
             randData:{},
             patientData:{},
+            scanBarcode:[],
+            pasteBarcode:[],
+            boxBarcodes:[],
             INCLUDE_ITEMS_WITH_OPEN_EXCEPTIONS : false,
             ONLY_ITEMS_WITH_PREREQUISITES_MET : false
         };
@@ -81,6 +85,9 @@ class InputSearchCriteria extends Component {
         this.handleDrawDateTo = this.handleDrawDateTo.bind(this);
         this.handleReceivedDateFrom = this.handleReceivedDateFrom.bind(this);
         this.handleReceivedDateTo = this.handleReceivedDateTo.bind(this);
+        this.scanBarcode = this.scanBarcode.bind(this);
+        this.pasteBarcode = this.pasteBarcode.bind(this);
+        this.boxBarcodes = this.boxBarcodes.bind(this);
     }
 
     handleDrawDateFrom(date) {
@@ -88,6 +95,25 @@ class InputSearchCriteria extends Component {
             drawDateFrom : date
         });
     }
+
+    scanBarcode = (e)=>{
+      this.setState({
+          scanBarcode : e.target.value.split(",")
+      })
+    };
+
+    pasteBarcode = (e)=>{
+        this.setState({
+            pasteBarcode : e.target.value.split(",")
+        })
+    };
+
+    boxBarcodes = (e)=>{
+        this.setState({
+            boxBarcodes : e.target.value.split(",")
+        })
+    };
+
 
     handleDrawDateTo(date) {
         this.setState({
@@ -361,8 +387,7 @@ class InputSearchCriteria extends Component {
                                     <label> Barcodes </label>
                                 </div>
                                 <div >
-                                    <input className="Parent-barcode-batch-creation" type="text"/>
-                                    <button>Go</button>
+                                    <input onChange={this.scanBarcode} className="Parent-barcode-batch-creation" type="text"/>
                                 </div>
                             </div>
 
@@ -370,14 +395,14 @@ class InputSearchCriteria extends Component {
                                 <div id="Alight-text-start" className="col-md-5" >
                                     <label>Paste Barcodes</label>
                                 </div>
-                                <textarea className="form-control Paste-text-area"  rows="3"></textarea>
+                                <textarea onChange={this.pasteBarcode} className="form-control Paste-text-area"  rows="3"></textarea>
                             </div>
 
                             <div className="row" id="row-top" >
                                 <div id="Alight-text-start" className="col-md-5" >
                                     <label>Paste Box Barcodes</label>
                                 </div>
-                                <textarea className="form-control Paste-text-area"  rows="3"></textarea>
+                                <textarea onChange={this.boxBarcodes} className="form-control Paste-text-area"  rows="3"></textarea>
                             </div>
 
                             <div className="row" id="row-top" >
@@ -410,21 +435,7 @@ class InputSearchCriteria extends Component {
                                     days</label>
                             </div>
 
-                            <div className="form-inline" style={styles.rowTop1}>
-                                <label className="col-sm-5 col-form-label" id="batch-search-label">My Saved Searches</label>
-                                <div className="col-sm-5">
-                                    <LiveSearch
-                                        notifyParent={this.notifyParent}
-                                        liveSearchData={liveLocationSearchData}/>
-                                </div>
-                            </div>
-                            <div className="row" id="save-search-field">
-                                <div className="col-md-5"></div>
-                                    <div className="form-check">
-                                        <input type="checkbox" className="form-check-input" id="exampleCheck1"></input>
-                                    </div>
-                                <label className="form-check-label">Show other user's searches</label>
-                            </div>
+                           <MySavedSearches/>
 
 
                             <div className="row" id="batch-row-buttons">
@@ -452,6 +463,10 @@ class InputSearchCriteria extends Component {
 const styles = ({
     rowTop1: {
         marginTop: '20px',
+        marginLeft:'-12px'
+    },
+    rowTop2: {
+        marginTop: '5px',
         marginLeft:'-12px'
     },
     findButton:{

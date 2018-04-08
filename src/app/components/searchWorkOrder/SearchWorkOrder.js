@@ -38,7 +38,7 @@ class SearchWorkOrder extends Component {
             liveStudySearchData : [],
             liveSponsorSearchData : [],
             selectedExportRows : [],
-            liveSavedSearchData : [],
+            liveSavedSearchData : ["000017","14SEP2016_DEMO","AssayQualB","BUG_FIX_3","Cass B","Cass B 1","Cass C","Cass D","Cass D_1","DEBUG","DEBUG001","DEBUG001","DEBUG001","DEBUG001","DEBUG001","DEBUG001","DEBUG001","DEBUG001","DEBUG001","DEBUG001","DEBUG123","DEBUG234","DEBUG234","DEBUG234","DEBUG234","DEBUG234","DEBUG234","DEBUG235"],
             products1 : []
         };
         this.handleExportSelectedRows = this.handleExportSelectedRows.bind(this);
@@ -57,14 +57,14 @@ class SearchWorkOrder extends Component {
     };
 
     componentDidMount() {
-            axios.get(' http://xtest3.ppdi.com/gclportal/api/workorder/getWorkOrderSearchCriteriaView')
+         /*   axios.get(' http://xtest3.ppdi.com/gclportal/api/workorder/getWorkOrderSearchCriteriaView')
                 .then( (res) => {
                         console.log(res.data);
                         this.setState({
                             liveSavedSearchData : res.data
                         })
                     },
-                    (error) => {console.log(error)});
+                    (error) => {console.log(error)}); */
 
         axios.get('http://xtest3.ppdi.com/gclportal/api/workorder/getLocations')
             .then( (res) => {
