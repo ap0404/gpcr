@@ -38,7 +38,7 @@ export const fetchPostsIfNeeded = req => (dispatch, getState) => {
 
 const formatRequest = (rawRequest) => {
     const client = [];
-    client.push(rawRequest.sponsorData);
+
     const requestObject = {
         "gsdSavedCriteriaNo": "",
         "criteriaName": "",
@@ -59,23 +59,23 @@ const formatRequest = (rawRequest) => {
                 "toReceivedDate": "10-Sep-2016 23:59:59"
             },
             "VIAL_LOCATION": [rawRequest.vialData],
-            "FREEZER_LOCATION": [],
+            "FREEZER_LOCATION": [rawRequest.freezerLocationData],
             "INCLUDE_ITEMS_WITH_OPEN_EXCEPTIONS": true,
             "ONLY_ITEMS_WITH_PREREQUISITES_MET": true,
             "STUDIES": [rawRequest.studyData],
-            "PRE_DILUTION_OF_TITER_TEST": [],
+            "PRE_DILUTION_OF_TITER_TEST": [rawRequest.preDulData],
             "SCAN_BARCODE":["GMOPAEXP0525"],
             "PASTE_BARCODE":[],
             "BOX_BARCODES":[],
-            "VISIT": [],
-            "SITE": [],
-            "SCREENID": [],
-            "RANDID": [],
-            "PATIENT_ACCESSION": [],
-            "FREEZER": [],
-            "FREEZER_SHELF": [],
-            "FREEZER_RACK": [],
-            "FREEZER_BOX": [],
+            "VISIT": [rawRequest.visitData],
+            "SITE": [rawRequest.siteData],
+            "SCREENID": [rawRequest.screenData],
+            "RANDID": [rawRequest.randData],
+            "PATIENT_ACCESSION": [rawRequest.patientData],
+            "FREEZER": [rawRequest.freezerData],
+            "FREEZER_SHELF": [rawRequest.freezerShelfData],
+            "FREEZER_RACK": [rawRequest.freezerRackData],
+            "FREEZER_BOX": [rawRequest.freezerBoxData],
             "labLocationNumber": ""
         }
 

@@ -60,8 +60,9 @@ class SearchWorkOrder extends Component {
             axios.get(' http://xtest3.ppdi.com/gclportal/api/workorder/getWorkOrderSearchCriteriaView')
                 .then( (res) => {
                         console.log(res.data);
+                        let filteredNotNullData = res.data.filter((data)=>{ return data != null});
                         this.setState({
-                            liveSavedSearchData : res.data
+                            liveSavedSearchData : filteredNotNullData
                         })
                     },
                     (error) => {console.log(error)});
@@ -157,13 +158,14 @@ class SearchWorkOrder extends Component {
             axios.get('http://xtest3.ppdi.com/gclportal/api/workorder/getWorkOrderSearchCriteriaMapping?criteriaName=' + selectedField)
                 .then( (res) => {
                         console.log(res.data);
-
-                      queryObj.sponsor = res.data.CLIENT[0].name;
-                      queryObj.barcode = res.data.BARCODE[0].name;
-                      queryObj.location = res.data.LOCATION[0].name;
-                      queryObj.status = res.data.STATUS[0].name;
-                      queryObj.studyCode = res.data.STUDIES[0].name;
-                      this.notifyParent()
+                        if(res.data === []) {
+                            queryObj.sponsor = res.data.CLIENT[0].name;
+                            queryObj.barcode = res.data.BARCODE[0].name;
+                            queryObj.location = res.data.LOCATION[0].name;
+                            queryObj.status = res.data.STATUS[0].name;
+                            queryObj.studyCode = res.data.STUDIES[0].name;
+                            this.notifyParent()
+                        }
                     },
                     (error) => {console.log(error)});
         }

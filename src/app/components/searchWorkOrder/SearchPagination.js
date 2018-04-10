@@ -122,6 +122,8 @@ class SearchPagination extends React.Component {
      };
 
     render() {
+
+        let data = this.props.products1;
         const options = {
             page: 1, // which page you want to show as default
             sizePerPageList: [
@@ -157,7 +159,7 @@ class SearchPagination extends React.Component {
         return (
             <div style={styles.pagebutton}>
                 <BootstrapTable
-                    data={this.props.products1}
+                    data={data}
                     options={options}
                     pagination
                     selectRow={selectRowProp}

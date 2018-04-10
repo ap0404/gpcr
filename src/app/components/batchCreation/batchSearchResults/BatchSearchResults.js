@@ -12,7 +12,8 @@ class BatchSearchResults extends Component {
         const {result} = this.props;
         this.state = {
             req : JSON.parse(localStorage.getItem('req')),
-            result : result
+            result : result,
+            params:[]
         }
     }
 
@@ -20,11 +21,22 @@ class BatchSearchResults extends Component {
         const { dispatch } = this.props
         dispatch(fetchPostsIfNeeded(this.state.req));
     }
-
+    isEmpty(obj) {
+        for(var key in this.state.req[obj]) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
 
     render() {
         const { result } = this.props;
-        debugger
+        const params = this.state && this.state.req && this.state.req !== null ? Object.keys(this.state.req).map( function(e) {
+            if(this.state.req[e] && this.state.req[e] !== '' && !this.isEmpty(e)){
+                return e;
+            }
+        },this) : undefined;
+
         return (
             <div>
                 <div className="jumbotron main-container">
@@ -42,26 +54,12 @@ class BatchSearchResults extends Component {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">Sponsor</th>
-                                        <td colspan="6">Mark</td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Studies</th>
-                                        <td colspan="4">Jacob</td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Test</th>
-                                        <td colspan="4">Larry the Bird</td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Recieved Date</th>
-                                        <td colspan="4">Larry the Bird</td>
-
-                                    </tr>
+                                    { params ? params.map((row, i) =>
+                                        row ? <tr key={i}>
+                                            <td key={i+'col'}>{row}</td>
+                                            <td key={i+'col1'}>{this.state.req[row]}</td>
+                                        </tr> : ''
+                                    ) : ''}
                                     </tbody>
                                 </table>
                             </div>

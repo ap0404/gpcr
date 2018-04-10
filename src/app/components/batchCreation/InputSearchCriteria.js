@@ -3,7 +3,7 @@ import './InputSearchCriteria.css';
 import LiveSearch from '../searchWorkOrder/LiveSearch';
 import Header from "../header/Header";
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
+// import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
  // import axios from 'axios';
  import SponsorList from './SponsorList';
@@ -24,6 +24,7 @@ import PatientAccessionList from "./PatientAccessionList";
 import PreDulTestList from "./PreDulTestList";
 import {Link} from "react-router-dom";
 import { connect } from 'react-redux';
+import MySavedSearches from "./MySavedSearches";
 
 //import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -364,7 +365,6 @@ class InputSearchCriteria extends Component {
                                 </div>
                                 <div >
                                     <input className="Parent-barcode-batch-creation" type="text"/>
-                                    <button>Go</button>
                                 </div>
                             </div>
 
@@ -412,21 +412,7 @@ class InputSearchCriteria extends Component {
                                     days</label>
                             </div>
 
-                            <div className="form-inline" style={styles.rowTop1}>
-                                <label className="col-sm-5 col-form-label" id="batch-search-label">My Saved Searches</label>
-                                <div className="col-sm-5">
-                                    <LiveSearch
-                                        notifyParent={this.notifyParent}
-                                        liveSearchData={liveLocationSearchData}/>
-                                </div>
-                            </div>
-                            <div className="row" id="save-search-field">
-                                <div className="col-md-5"></div>
-                                    <div className="form-check">
-                                        <input type="checkbox" className="form-check-input" id="exampleCheck1"></input>
-                                    </div>
-                                <label className="form-check-label">Show other user's searches</label>
-                            </div>
+                            <MySavedSearches/>
 
 
                             <div className="row" id="batch-row-buttons">
