@@ -30,7 +30,8 @@ class ScreenIDList extends Component {
                 .then((res) => {
                     console.log(res.data);
                     let ScreenID = [];
-                    for (let i = 0; i < res.data.AllRows.length; i++) {
+                    const _AllRows = res && res.data && res.data.AllRows && res.data.AllRows.length > 0 ? res.data.AllRows : [];
+                    for (let i = 0; i < _AllRows.length; i++) {
                         ScreenID.push(res.data.AllRows[i].name);
                     }
                     this.setState({

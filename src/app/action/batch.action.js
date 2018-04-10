@@ -50,8 +50,8 @@ const formatRequest = (rawRequest) => {
         "isDeleted":"",
         "node": {
             "CLIENT": [rawRequest.sponsorData],
-            "TEST": [rawRequest.testData],
-            "PRE_DILUTION_OF_IK_TEST": [rawRequest.preDulData],
+            "TEST": "GSK_PnMOPA_v1_IK",
+            "PRE_DILUTION_OF_IK_TEST":"1",
             "UNIT_OF_MEASURE": [],
             "SAMPLE_TYPE": [],
             "RECEIVED_DATE": {
@@ -60,11 +60,11 @@ const formatRequest = (rawRequest) => {
             },
             "VIAL_LOCATION": [rawRequest.vialData],
             "FREEZER_LOCATION": [rawRequest.freezerLocationData],
-            "INCLUDE_ITEMS_WITH_OPEN_EXCEPTIONS": true,
+            "INCLUDE_ITEMS_WITH_OPEN_EXCEPTIONS": false,
             "ONLY_ITEMS_WITH_PREREQUISITES_MET": true,
             "STUDIES": [rawRequest.studyData],
             "PRE_DILUTION_OF_TITER_TEST": [rawRequest.preDulData],
-            "SCAN_BARCODE":["GMOPAEXP0525"],
+            "SCAN_BARCODE":[],
             "PASTE_BARCODE":[],
             "BOX_BARCODES":[],
             "VISIT": [rawRequest.visitData],
@@ -76,7 +76,7 @@ const formatRequest = (rawRequest) => {
             "FREEZER_SHELF": [rawRequest.freezerShelfData],
             "FREEZER_RACK": [rawRequest.freezerRackData],
             "FREEZER_BOX": [rawRequest.freezerBoxData],
-            "labLocationNumber": ""
+            "labLocationNumber": "30"
         }
 
     }

@@ -22,8 +22,8 @@ class BatchSearchResults extends Component {
         dispatch(fetchPostsIfNeeded(this.state.req));
     }
     isEmpty(obj) {
-        for(var key in this.state.req[obj]) {
-            if(obj.hasOwnProperty(key))
+
+        if(Object.keys(this.state.req[obj]).length > 0){
                 return false;
         }
         return true;
@@ -46,6 +46,7 @@ class BatchSearchResults extends Component {
                     <div className="col-md-7">
                         <div class="panel panel-default panel-header">
                             <div class="panel-body Panel2">Query Run Parameter:
+                                <div className="table-responsive table-height">
                                 <table class="table table-bordered batch-search-table">
                                     <thead>
                                     <tr>
@@ -57,11 +58,12 @@ class BatchSearchResults extends Component {
                                     { params ? params.map((row, i) =>
                                         row ? <tr key={i}>
                                             <td key={i+'col'}>{row}</td>
-                                            <td key={i+'col1'}>{this.state.req[row]}</td>
+                                            <td key={i+'col1'}>{this.state.req[row] ? this.state.req[row].name  : "Na" }</td>
                                         </tr> : ''
                                     ) : ''}
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>

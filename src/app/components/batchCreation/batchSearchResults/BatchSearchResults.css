@@ -33,6 +33,7 @@
 /*}*/
 .batch-search-table {
     width: 97%;
+    height:100%;
 }
 .button-size{
     margin-top: 20px;
@@ -48,5 +49,9 @@
 #export-list.btn-primary:disabled {
     background-color: lightgray;
     cursor: none;
+}
+.table-height {
+    height: fit-content;
+    max-height: 235px;
 }
 

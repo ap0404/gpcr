@@ -23,9 +23,9 @@ class PreDulTestList extends Component {
     };
 
     componentWillReceiveProps(newProps) {
-        if (!!newProps.studyId) {
+        if (!!newProps.testData) {
             axios.post('http://localhost:8081/gclportal/api/dilutions',
-                [newProps.studyId]
+                [newProps.testData]
             )
                 .then((res) => {
                     console.log(res.data);

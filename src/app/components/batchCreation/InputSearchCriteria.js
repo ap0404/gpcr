@@ -414,7 +414,6 @@ class InputSearchCriteria extends Component {
 
                             <MySavedSearches/>
 
-
                             <div className="row" id="batch-row-buttons">
                                 <div className="col-sm-2">
                                     <button id='reset-button'className="btn btn-primary">Reset</button>
@@ -438,10 +437,6 @@ class InputSearchCriteria extends Component {
     }
 }
 const styles = ({
-    rowTop1: {
-        marginTop: '20px',
-        marginLeft:'-12px'
-    },
     findButton:{
         color:'white'
     },
