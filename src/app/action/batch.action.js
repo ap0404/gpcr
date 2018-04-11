@@ -50,18 +50,18 @@ const formatRequest = (rawRequest) => {
         "isDeleted":"",
         "node": {
             "CLIENT": [rawRequest.sponsorData],
-            "TEST": "GSK_PnMOPA_v1_IK",
-            "PRE_DILUTION_OF_IK_TEST":"1",
+            "TEST": [rawRequest.testData],
+            "PRE_DILUTION_OF_IK_TEST":{value:1, ticked:true},
             "UNIT_OF_MEASURE": [],
             "SAMPLE_TYPE": [],
             "RECEIVED_DATE": {
-                "fromReceivedDate": "08-Sep-2016 00:00:00",
-                "toReceivedDate": "10-Sep-2016 23:59:59"
+                "fromReceivedDate": rawRequest.receivedDateFrom,
+                "toReceivedDate": rawRequest.receivedDateTo
             },
             "VIAL_LOCATION": [rawRequest.vialData],
             "FREEZER_LOCATION": [rawRequest.freezerLocationData],
-            "INCLUDE_ITEMS_WITH_OPEN_EXCEPTIONS": false,
-            "ONLY_ITEMS_WITH_PREREQUISITES_MET": true,
+            "INCLUDE_ITEMS_WITH_OPEN_EXCEPTIONS": rawRequest.INCLUDE_ITEMS_WITH_OPEN_EXCEPTIONS,
+            "ONLY_ITEMS_WITH_PREREQUISITES_MET": rawRequest.ONLY_ITEMS_WITH_PREREQUISITES_MET,
             "STUDIES": [rawRequest.studyData],
             "PRE_DILUTION_OF_TITER_TEST": [rawRequest.preDulData],
             "SCAN_BARCODE":[],

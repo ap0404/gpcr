@@ -15,6 +15,7 @@ class TestList extends Component {
     notifyParent = function(name, selectedField){
         for(let i=0;i<this.state.liveTestSearchData.length;i++){
             if(selectedField[0]===this.state.liveTestSearchData[i].name) {
+                testData.name = this.state.liveTestSearchData[i].name;
                 testData.id = this.state.liveTestSearchData[i].id;
                 testData.sop = this.state.liveTestSearchData[i].sop;
                 testData.testType = this.state.liveTestSearchData[i].testType;

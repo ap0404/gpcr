@@ -17,6 +17,7 @@ class StudyList extends Component {
             if(selectedField[0]===this.state.liveStudySearchData[i].name) {
                 studyData.id = this.state.liveStudySearchData[i].id;
                 studyData.name=selectedField[0];
+                studyData.ticked = this.state.liveStudySearchData[i].ticked;
             }
         }
 

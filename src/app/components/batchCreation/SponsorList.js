@@ -22,6 +22,7 @@ class SponsorList extends Component {
                 if(selectedField[0]===this.state.liveSponsorSearchData[i].name) {
                     sponsorData.id = this.state.liveSponsorSearchData[i].id;
                     sponsorData.name = selectedField[0];
+                    sponsorData.ticked = true;
                 }
             }
         }
