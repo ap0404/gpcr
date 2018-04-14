@@ -55,8 +55,8 @@ const formatRequest = (rawRequest) => {
             "UNIT_OF_MEASURE": [],
             "SAMPLE_TYPE": [],
             "RECEIVED_DATE": {
-                "fromReceivedDate": rawRequest.receivedDateFrom,
-                "toReceivedDate": rawRequest.receivedDateTo
+                "fromReceivedDate": "08-Sep-2016 00:00:00",
+                "toReceivedDate": "10-Sep-2016 23:59:59"
             },
             "VIAL_LOCATION": [rawRequest.vialData],
             "FREEZER_LOCATION": [rawRequest.freezerLocationData],

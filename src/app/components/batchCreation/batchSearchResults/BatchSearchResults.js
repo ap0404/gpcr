@@ -3,6 +3,9 @@ import './BatchSearchResults.css';
 import { connect } from 'react-redux';
 import { getBatchResult,getResultSucess,fetchPostsIfNeeded} from "../../../action/batch.action";
 import  {getBatchResultReducer}  from "../../../reducers";
+import {AgGridReact,AgGridColumn} from 'ag-grid-react';
+import  'ag-grid/dist/styles/ag-grid.css';
+import 'ag-grid/dist/styles/ag-theme-balham.css'
 import PropTypes from 'prop-types';
 
 class BatchSearchResults extends Component {
@@ -13,9 +16,15 @@ class BatchSearchResults extends Component {
         this.state = {
             req : JSON.parse(localStorage.getItem('req')),
             result : result,
-            params:[]
+            params:[],
+            rowData : [],
+            quickFilterText: null,
         }
     }
+
+    onQuickFilterText = (event) => {
+        this.setState({quickFilterText: event.target.value});
+    };
 
     componentWillMount(){
         const { dispatch } = this.props
@@ -36,7 +45,10 @@ class BatchSearchResults extends Component {
                 return e;
             }
         },this) : undefined;
-
+        const agGridData = result && result.getBatchResultReducer && result.getBatchResultReducer.result && result.getBatchResultReducer.result.data && result.getBatchResultReducer.result.data.entity ? result.getBatchResultReducer.result.data.entity : [];
+        debugger
+        //this.setState({rowData : agGridData});
+        this.state.rowData = agGridData && agGridData.length > 0 ? agGridData : [];
         return (
             <div>
                 <div className="jumbotron main-container">
@@ -91,6 +103,51 @@ class BatchSearchResults extends Component {
                     </div>
 
                 </div>
+                <div className="row">
+                    <div  className="col-md-10 col-md-offset-1 "  >
+                        <div className="panel-body ag-grid-panel">
+                        <div style={styles.AgGrid} className="ag-theme-balham">
+                             <AgGridReact
+                                rowData={this.state.rowData}
+                                rowSelection="multiple"
+                                // paginationPageSize ="10"
+                                enableFilter
+                                pagination
+                                floatingFilter
+                                quickFilterText={this.state.quickFilterText}
+                                rowHeight="25"
+                               >
+
+                                <AgGridColumn  width={35} suppressFilter  pinned checkboxSelection enablePivot suppressMenu></AgGridColumn><AgGridColumn  suppressMenu  field="clientname"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="studyCode"></AgGridColumn>
+                                <AgGridColumn  suppressMenu  field="sampleNo"></AgGridColumn>
+                                <AgGridColumn  suppressMenu  field="siteId"></AgGridColumn>
+                                <AgGridColumn  suppressMenu  field="randId"></AgGridColumn>
+                                <AgGridColumn  suppressMenu field="screenId"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="patientAccession"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="visitName"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="drawDate"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="sampleName"></AgGridColumn>
+                                 <AgGridColumn suppressMenu field="barcode"></AgGridColumn>
+                                 <AgGridColumn suppressMenu field="sampleVolume"></AgGridColumn>
+                                 <AgGridColumn suppressMenu field="sampleUnit"></AgGridColumn>
+                                 <AgGridColumn suppressMenu field="vialStatus"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="createdDate"></AgGridColumn>
+                                 <AgGridColumn suppressMenu field="hiAge"></AgGridColumn>
+                                 <AgGridColumn suppressMenu field="recievedDate"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="freezerLocation"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="freezerId"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="shelfId"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="rackId"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="boxPosition"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="storageBox"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="boxRow"></AgGridColumn>
+                                <AgGridColumn suppressMenu field="boxColoumn"></AgGridColumn>
+                            </AgGridReact>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -101,5 +158,12 @@ function mapStateToProps(state){
         result : state
     }
 }
+
+
+const styles = ({
+    AgGrid:{
+      height:'300px',
+    }
+});
 
 export default connect(mapStateToProps) (BatchSearchResults);

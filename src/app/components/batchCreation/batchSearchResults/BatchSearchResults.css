@@ -10,22 +10,29 @@
 }
 
 .panel-header{
-    height: 310px;
+    height: 290px;
     border: 1px solid black;
     margin-left: 5%;
 }
 
 .panel1{
-    width: 91%;
-    height: 310px;
+    width: 94%;
+    height: 290px;
     border: 1px solid black;
-    margin-left: 5px;
+    /*margin-left: 4px;*/
 }
 
 .Panel2{
     text-align: left;
     padding-top: 20px;
     padding-left: 20px;
+}
+
+.ag-grid-panel {
+    /*border: 1px solid black;*/
+    width: 112%;
+    margin-left: 42px;
+    margin-top: 15px;
 }
 
 /*.table-bordered{*/

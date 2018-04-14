@@ -76,6 +76,7 @@ class MySavedSearches extends Component {
                             notifyParent={this.notifyParent}
                             liveSearchData={this.state.anotherUserSearchDataValue}/>
                     </div>
+                    <button type="button" className="btn btn-secondary btn-sm">View</button>
                 </div> : <div></div>}
 
             </div>

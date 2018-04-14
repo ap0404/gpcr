@@ -24,6 +24,9 @@ class HomePage extends Component {
               <Link id='homepage'className="btn btn-block list-group-item" to="/batchSearchResults">
                   Batch Search Results
               </Link>
+              <Link id='homepage'className="btn btn-block list-group-item" to="/batchViewInterface">
+                  Batch View Interfaces
+              </Link>
 
           </div>
         </div>

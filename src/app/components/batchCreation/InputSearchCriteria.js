@@ -246,7 +246,7 @@ class InputSearchCriteria extends Component {
                             <PreDulTestList getSelectedPreDulTestData={this.getSelectedPreDulTestData} studyId={this.state.studyData.id}/>
 
                             <div className="form-inline">
-                                <label className="col-sm-4 col-form-label" id="batch-search-label">volume|uom</label>
+                                <label className="col-sm-4 col-form-label" id="batch-search-label">Volume|UOM</label>
                                 <div className="col-xl1">
                                     <input type="text" id="volume-text" className="form-control" aria-label="Small"/>
                                     <LiveSearch
