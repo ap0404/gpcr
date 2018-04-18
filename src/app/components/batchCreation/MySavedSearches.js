@@ -8,14 +8,23 @@ class MySavedSearches extends Component {
             mySavedSearchesData: [],
             showOtherViewsSearch: false,
             anotherUserSearchData : [],
-            anotherUserSearchDataValue : []
+            anotherUserSearchDataValue : [],
+            selectedCriteriaName : ''
         };
         this.notifyParent = this.notifyParent.bind(this);
         this.handleOtherViewsCheckBoxChange = this.handleOtherViewsCheckBoxChange.bind(this);
     }
 
     notifyParent = function (name, selectedField) {
-
+       this.setState({
+           selectedCriteriaName : selectedField
+       })
+    };
+    fetchCriteriaDetails = ()=> {
+        axios.get(`http://localhost:8081/gclportal/api/workorder/getWorkOrderSearchCriteriaMapping?criteriaName=${this.state.selectedCriteriaName}`)
+            .then((res)=>{
+                  this.props.getSelectedCriteriaData(res.data);
+            })
     };
     handleOtherViewsCheckBoxChange = ()=>{
         this.setState({
@@ -76,7 +85,7 @@ class MySavedSearches extends Component {
                             notifyParent={this.notifyParent}
                             liveSearchData={this.state.anotherUserSearchDataValue}/>
                     </div>
-                    <button type="button" className="btn btn-secondary btn-sm">View</button>
+                    <button onClick={this.fetchCriteriaDetails} type="button" className="btn btn-secondary btn-sm">View</button>
                 </div> : <div></div>}
 
             </div>

@@ -8,6 +8,7 @@ class TestList extends Component {
         this.state = {
             liveTestSearchData : [],
             testList : [],
+            // selectedTestIndex : 0
         };
         this.notifyParent = this.notifyParent.bind(this);
     }
@@ -41,6 +42,13 @@ class TestList extends Component {
                         liveTestSearchData : res.data.AllRows,
                         testList
                     });
+                    // debugger
+                    // if(!!newProps.selectedCriteriaData) {
+                    //     this.setState({
+                    //         selectedTestIndex : this.state.testList.indexOf(JSON.parse(newProps.selectedCriteriaData.TEST)[0].name)
+                    //     });
+                    //     this.props.getSelectedTestData(testData);
+                    // }
                 }, (err) => {
                     console.log(err);
                 });
@@ -54,6 +62,7 @@ class TestList extends Component {
                 <div className="col-sm-5">
                     <LiveSearch
                         liveSearchData={this.state.testList}
+                        // selectedIndex={this.state.selectedTestIndex}
                         notifyParent={this.notifyParent}  liveSearchDataResponse="test"/>
                 </div>
             </div>

@@ -68,6 +68,10 @@
 #row-top{
     margin-top: 20px;
 }
+#row-top1{
+    text-align: start;
+    margin-top: 20px;
+}
 #save-search-field {
     margin-top:5px;
     padding-left:45px;

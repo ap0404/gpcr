@@ -7,7 +7,8 @@ class StudyList extends Component {
         super(props);
         this.state = {
             liveStudySearchData : [],
-            studyList : []
+            studyList : [],
+            // selectedStudyIndex : 0
         };
         this.notifyParent = this.notifyParent.bind(this);
     }
@@ -35,13 +36,27 @@ class StudyList extends Component {
                     }
                     this.setState({
                         liveStudySearchData : res.data,
-                        studyList
+                        studyList,
+                        //selectedStudyIndex : this.state.studyList.indexOf(JSON.parse(newProps.selectedCriteriaData.STUDIES)[0].name)
                     });
+                    //
+                    // if(!!newProps.selectedCriteriaData) {
+                    //     const _studies = newProps.selectedCriteriaData.STUDIES ?
+                    //         newProps.selectedCriteriaData.STUDIES[0].name : '';
+                    //     debugger
+                    //     this.setState({
+                    //         selectedStudyIndex : this.state.studyList.indexOf(JSON.parse(newProps.selectedCriteriaData.STUDIES)[0].name)
+                    //     });
+                    //     this.props.getSelectedStudyData(studyData);
+                    // }
+
                 }, (err) => {
                     console.log(err);
-                });
+                })
         }
     }
+
+
 
     render() {
         return (
@@ -50,6 +65,7 @@ class StudyList extends Component {
                 <div className="col-sm-5">
                     <LiveSearch
                         ref="StudyList"
+                        // selectedIndex={this.state.selectedStudyIndex}
                         liveSearchData={this.state.studyList}
                         notifyParent={this.notifyParent} liveSearchDataResponse="study"/>
                 </div>

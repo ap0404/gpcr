@@ -8,8 +8,9 @@ class SponsorList extends Component {
         this.state = {
             liveSponsorSearchData : [],
             sponsorList : [],
-            selected: []
-        }
+            selected: [],
+            // selectedSponsorIndex : 0
+        };
         this.notifyParent = this.notifyParent.bind(this);
     }
 
@@ -40,10 +41,18 @@ class SponsorList extends Component {
                     liveSponsorSearchData : res.data,
                     sponsorList
                 });
+
             }, (err) => {
                 console.log(err);
             });
     }
+
+    // componentWillReceiveProps(newProps) {
+    //     if(!!this.props.selectedCriteriaData && !!newProps.selectedCriteriaData &&this.props.selectedCriteriaData!== newProps.selectedCriteriaData){
+    //         this.state.selectedSponsorIndex = this.state.sponsorList.indexOf(JSON.parse(newProps.selectedCriteriaData.CLIENT)[0].name);
+    //         this.props.getSelectedSponsorData(JSON.parse(newProps.selectedCriteriaData.CLIENT)[0]);
+    //     }
+    // }
 
    render() {
          return (
@@ -52,6 +61,7 @@ class SponsorList extends Component {
                  <div className="col-sm-5">
                      <LiveSearch
                          ref="SponsorList"
+                         // selectedIndex={this.state.selectedSponsorIndex}
                          liveSearchData={this.state.sponsorList}
                          notifyParent={this.notifyParent} liveSearchDataResponse="sponsor" selected={this.state.selected}/>
                  </div>

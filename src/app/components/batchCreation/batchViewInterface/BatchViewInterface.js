@@ -18,23 +18,23 @@ class BatchViewInterface extends Component {
                     <div className="row">
 
                         <div className="col-sm-2">
-                            <button id="update-button" className="btn btn-primary">Open Batch</button>
+                            <button id="update-button" className="btn btn-outline-success">Open Batch</button>
                         </div>
 
                         <div className="col-sm-2">
-                            <button id="update-button" className="btn btn-primary">Cancel Batch</button>
+                            <button id="update-button" className="btn btn-outline-danger">Cancel Batch</button>
                         </div>
 
                         <div className="col-sm-3">
-                            <button id="update-button" className="btn btn-primary">Change Automatic Run Creation</button>
+                            <button id="update-button" className="btn btn-outline-secondary">Change Automatic Run Creation</button>
                         </div>
 
                         <div className="col-sm-3">
-                            <button id="update-button" className="btn btn-primary">Display Created/Completed</button>
+                            <button id="update-button" className="btn btn-outline-success">Display Created/Completed</button>
                         </div>
 
                         <div className="col-sm-2">
-                            <button id="update-button" className="btn btn-primary">Export List</button>
+                            <button id="update-button" className="btn btn-outline-primary">Export List</button>
                         </div>
 
                     </div>

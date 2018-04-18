@@ -43,6 +43,7 @@ class InputSearchCriteria extends Component {
             receivedDateFrom: '',
             receivedDateTo: '',
             sponsorData: {},
+            // selectedCriteriaData : [],
             studyData: {},
             testData : {},
             vialData : {},
@@ -84,8 +85,15 @@ class InputSearchCriteria extends Component {
         this.handleDrawDateTo = this.handleDrawDateTo.bind(this);
         this.handleReceivedDateFrom = this.handleReceivedDateFrom.bind(this);
         this.handleReceivedDateTo = this.handleReceivedDateTo.bind(this);
+        // this.getSelectedCriteriaData = this.getSelectedCriteriaData.bind(this);
     }
 
+    // getSelectedCriteriaData = (selectedCriteriaData) => {
+    //     debugger
+    //     this.setState({
+    //         selectedCriteriaData
+    //     });
+    // };
     handleDrawDateFrom(date) {
         this.setState({
             drawDateFrom : date
@@ -237,11 +245,11 @@ class InputSearchCriteria extends Component {
 
                     <div className="row">
                         <div className='col-md-6'>
-                            <SponsorList getSelectedSponsorData={this.getSelectedSponsorData}/>
+                            <SponsorList getSelectedSponsorData ={this.getSelectedSponsorData} getSelectedSponsorData={this.getSelectedSponsorData}/>
 
-                            <StudyList getSelectedStudyData={this.getSelectedStudyData} sponsorId={this.state.sponsorData.id}/>
+                            <StudyList getSelectedStudyData={this.getSelectedStudyData} getSelectedStudyData={this.getSelectedStudyData} sponsorId={this.state.sponsorData.id}/>
 
-                            <TestList getSelectedTestData={this.getSelectedTestData} studyId={this.state.studyData.id}/>
+                            <TestList getSelectedTestData={this.getSelectedTestData} getSelectedTestData={this.getSelectedTestData} studyId={this.state.studyData.id}/>
 
                             <PreDulTestList getSelectedPreDulTestData={this.getSelectedPreDulTestData} studyId={this.state.studyData.id}/>
 
@@ -284,7 +292,7 @@ class InputSearchCriteria extends Component {
 
                         <div className='col-md-6'>
 
-                            <div id="row-top" className="row" >
+                            <div id="row-top1" className="row" >
                                 <div id="Alight-text-start" className="col-md-4" >
                                     <label >Draw Date</label>
                                 </div>
@@ -412,7 +420,7 @@ class InputSearchCriteria extends Component {
                                     days</label>
                             </div>
 
-                            <MySavedSearches/>
+                            <MySavedSearches getSelectedCriteriaData={this.getSelectedCriteriaData}/>
 
                             <div className="row" id="batch-row-buttons">
                                 <div className="col-sm-2">
